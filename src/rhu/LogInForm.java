@@ -6,6 +6,7 @@
 package rhu;
 
 import admin.adminDashboard;
+import admin.patientDashboard;
 import admin.userDashboard;
 import config.dbConnect;
 import java.sql.ResultSet;
@@ -196,34 +197,33 @@ public class LogInForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      
-        if(loginAcc(user.getText(),pass.getText())){
+       if(loginAcc(user.getText(), pass.getText())) {
+        
+        if(!status.equals("Active")) {
+            JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin"); 
+        } else { 
+            JOptionPane.showMessageDialog(null, "Login Success");
             
-           if(!status.equals("Active")){
-           JOptionPane.showMessageDialog(null,"In-Active Account, Contact the Admin"); 
-           }else{ 
-               
-            JOptionPane.showMessageDialog(null,"Login Success");
-            if(type.equals("Municipal Health Officer")){
-                 adminDashboard ads = new adminDashboard();
-                 ads.setVisible(true);
+            if(type.equals("Municipal Health Officer")) {
+                adminDashboard ads = new adminDashboard();
+                ads.setVisible(true);
                 this.dispose();
-                 
-               
-            }else if(type.equals("Staff")){
-               userDashboard usd = new userDashboard();
-                 usd.setVisible(true);
+            } else if(type.equals("Staff")) {
+                userDashboard usd = new userDashboard();
+                usd.setVisible(true);
                 this.dispose();  
-            }else {
-                JOptionPane.showMessageDialog(null,"No Account found,Contact the Admin"); 
+            } else if(type.equals("Patient")) {  // Added condition for Patient
+                patientDashboard ptd = new patientDashboard();
+                ptd.setVisible(true);
+                this.dispose();  
+            } else {
+                JOptionPane.showMessageDialog(null, "No Account found, Contact the Admin"); 
             }
-           
-           }
-        
-        }else{
-            JOptionPane.showMessageDialog(null,"Login Failed");
-        
-        
         }
+    
+    } else {
+        JOptionPane.showMessageDialog(null, "Login Failed");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
