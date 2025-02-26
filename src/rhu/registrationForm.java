@@ -6,10 +6,12 @@
 
 package rhu;
 import config.dbConnect;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -200,6 +202,9 @@ public class registrationForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 pwKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                pwKeyTyped(evt);
+            }
         });
         MainPanel.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 240, 40));
 
@@ -279,18 +284,22 @@ public class registrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+     
         
        
         
      dbConnect dbc = new dbConnect();
-     if(fn.getText().isEmpty() 
-                && ln.getText().isEmpty() 
-                && em.getText().isEmpty() 
-                && cn.getText().isEmpty() 
-                && us.getText().isEmpty() 
-                && pw.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "All Fields are Required!");
+     if (fn.getText().isEmpty() 
+            || ln.getText().isEmpty() 
+            || em.getText().isEmpty() 
+            || cn.getText().isEmpty() 
+            || us.getText().isEmpty() 
+            || pw.getText().isEmpty()) {
+
+        JOptionPane.showMessageDialog(null, "All Fields are Required!");
+        
+         } else if (pw.getText().length() < 8) {
+        JOptionPane.showMessageDialog(null, "Password must be at least 8 characters!", "Warning", JOptionPane.WARNING_MESSAGE);
             
        } else if(duplicateCheck()){ 
     System.out.println("Duplicate Exist");
@@ -424,27 +433,7 @@ public class registrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_usKeyReleased
 
     private void pwKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyReleased
-        String password = new String(pw.getPassword()).trim(); // Get and trim password
-
-    // Don't validate if the password is empty (prevents early pop-ups)
-    if (password.isEmpty()) return;
-
-    // Regular expression: At least 1 uppercase, 1 special character, 1 number, and 8+ characters long
-    String regex = "^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\":{}|<>])(?=.*[0-9]).{8,}$";
-
-    // Only validate when Enter is pressed
-    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        if (!password.matches(regex)) {
-            JOptionPane.showMessageDialog(this, 
-                "Password is too weak! \nMust contain at least:\n" +
-                "- 1 Uppercase Letter\n" +
-                "- 1 Special Character\n" +
-                "- 1 Number\n" +
-                "- Minimum 8 Characters"
-            );
-            pw.requestFocus();
-        }
-    }
+     
     }//GEN-LAST:event_pwKeyReleased
 
     private void tyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tyActionPerformed
@@ -454,6 +443,10 @@ public class registrationForm extends javax.swing.JFrame {
     private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pwActionPerformed
+
+    private void pwKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyTyped
+     
+    }//GEN-LAST:event_pwKeyTyped
 
     /**
      * @param args the command line arguments
