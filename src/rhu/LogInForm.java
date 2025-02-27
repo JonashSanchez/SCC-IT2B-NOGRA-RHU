@@ -192,7 +192,8 @@ public class LogInForm extends javax.swing.JFrame {
     }//GEN-LAST:event_userActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -223,6 +224,10 @@ public class LogInForm extends javax.swing.JFrame {
     
     } else {
         JOptionPane.showMessageDialog(null, "Login Failed");
+        user.setText("");
+       
+            pass.setText(""); 
+          
     }
     }//GEN-LAST:event_jButton2ActionPerformed
 

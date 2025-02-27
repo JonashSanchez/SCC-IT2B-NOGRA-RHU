@@ -289,28 +289,44 @@ public class registrationForm extends javax.swing.JFrame {
        
         
      dbConnect dbc = new dbConnect();
-     if (fn.getText().isEmpty() 
-            || ln.getText().isEmpty() 
-            || em.getText().isEmpty() 
-            || cn.getText().isEmpty() 
-            || us.getText().isEmpty() 
-            || pw.getText().isEmpty()) {
-
-        JOptionPane.showMessageDialog(null, "All Fields are Required!");
+    
+    
+    if (fn.getText().isEmpty() || ln.getText().isEmpty() || em.getText().isEmpty() 
+            || cn.getText().isEmpty() || us.getText().isEmpty() || pw.getText().isEmpty()) {
         
-         } else if (pw.getText().length() < 8) {
-        JOptionPane.showMessageDialog(null, "Password must be at least 8 characters!", "Warning", JOptionPane.WARNING_MESSAGE);
-            
-       } else if(duplicateCheck()){ 
-    System.out.println("Duplicate Exist");
+        JOptionPane.showMessageDialog(null, "All Fields are Required!");
+        return; // Exit the method if validation fails
+    } 
+    
+    
+    else if (pw.getText().length() < 8) {
+        JOptionPane.showMessageDialog(null, "Password must be at least 8 characters!", 
+                                      "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+    
+    
+    else if (duplicateCheck()) {
+        System.out.println("Duplicate Exists");
+        return; 
+    } 
+    
+    
+    else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact, u_type, u_username, u_pass, u_status) "
+            + "VALUES('" + fn.getText() + "', '" + ln.getText() + "', '" + em.getText() + "', '" 
+            + cn.getText() + "', '" + ty.getSelectedItem() + "', '" + us.getText() + "', '" 
+            + pw.getText() + "', 'Pending')") > 0) { 
+        
+        JOptionPane.showMessageDialog(null, "Successfully Registered");
 
-} else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact, u_type, u_username, u_pass, u_status)"
-        + "VALUES('"+fn.getText()+"', '"+ln.getText()+"', '"+em.getText()+"', '"+cn.getText()+"', '"+ty.getSelectedItem()+"', '"+us.getText()+"', '"+pw.getText()+"', 'Pending')") == 0){
-    JOptionPane.showMessageDialog(null, "Successfully Registered");
-    
-    
-    
-    
+        
+        LogInForm lgn = new LogInForm();
+        lgn.setVisible(true);
+        
+        
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Registration failed. Please try again.");
     }
 
 

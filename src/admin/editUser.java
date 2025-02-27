@@ -27,6 +27,30 @@ public class editUser extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        MainPanel1 = new javax.swing.JPanel();
+        Navigation1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        em1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        fn1 = new javax.swing.JTextField();
+        ln1 = new javax.swing.JTextField();
+        pw1 = new javax.swing.JPasswordField();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        us1 = new javax.swing.JTextField();
+        cn1 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        ty1 = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         Navigation = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -50,6 +74,174 @@ public class editUser extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         ty = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+
+        MainPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Navigation1.setBackground(new java.awt.Color(102, 51, 255));
+        Navigation1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setBackground(new java.awt.Color(102, 51, 255));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad.png"))); // NOI18N
+        Navigation1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -30, 530, 510));
+
+        jLabel16.setBackground(new java.awt.Color(102, 51, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/med.png"))); // NOI18N
+        Navigation1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 550, 620));
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doc.png"))); // NOI18N
+        Navigation1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -160, 470, 960));
+
+        MainPanel1.add(Navigation1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 580));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setText("Type:");
+        MainPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 110, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Edit Form");
+        MainPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 400, 70));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel18.setText("Email:");
+        MainPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 110, 30));
+
+        em1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        em1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                em1ActionPerformed(evt);
+            }
+        });
+        em1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                em1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(em1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 240, 40));
+
+        jButton3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton3.setText("Cancel");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        MainPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 510, 90, -1));
+
+        jButton4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton4.setText("Update");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        MainPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 510, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel19.setText("First Name:");
+        MainPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 110, 30));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel20.setText("Last Name:");
+        MainPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 110, 30));
+
+        fn1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        fn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fn1ActionPerformed(evt);
+            }
+        });
+        fn1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                fn1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(fn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 240, 40));
+
+        ln1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ln1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ln1ActionPerformed(evt);
+            }
+        });
+        ln1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ln1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(ln1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 240, 40));
+
+        pw1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pw1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pw1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(pw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 240, 40));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel21.setText("Password:");
+        MainPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 460, 110, 30));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel22.setText("Username:");
+        MainPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 110, 30));
+
+        us1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        us1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                us1ActionPerformed(evt);
+            }
+        });
+        us1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                us1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(us1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, 240, 40));
+
+        cn1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cn1ActionPerformed(evt);
+            }
+        });
+        cn1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cn1KeyReleased(evt);
+            }
+        });
+        MainPanel1.add(cn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 240, 40));
+
+        jLabel23.setBackground(new java.awt.Color(102, 51, 255));
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
+        MainPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -50, 270, 230));
+
+        ty1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User Type", "Municipal Health Officer", "Staff", " " }));
+        ty1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ty1ActionPerformed(evt);
+            }
+        });
+        MainPanel1.add(ty1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 352, 240, 40));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel24.setText("Contact No:");
+        MainPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 110, 30));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MainPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(MainPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -279,30 +471,110 @@ public class editUser extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_tyActionPerformed
 
+    private void em1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_em1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_em1ActionPerformed
+
+    private void em1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_em1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_em1KeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void fn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fn1ActionPerformed
+
+    private void fn1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fn1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fn1KeyReleased
+
+    private void ln1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ln1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ln1ActionPerformed
+
+    private void ln1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ln1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ln1KeyReleased
+
+    private void pw1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pw1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pw1KeyReleased
+
+    private void us1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_us1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_us1ActionPerformed
+
+    private void us1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_us1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_us1KeyReleased
+
+    private void cn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cn1ActionPerformed
+
+    private void cn1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cn1KeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cn1KeyReleased
+
+    private void ty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ty1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ty1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JPanel MainPanel1;
     private javax.swing.JPanel Navigation;
+    private javax.swing.JPanel Navigation1;
     private javax.swing.JTextField cn;
+    private javax.swing.JTextField cn1;
     private javax.swing.JTextField em;
+    private javax.swing.JTextField em1;
     private javax.swing.JTextField fn;
+    private javax.swing.JTextField fn1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField ln;
+    private javax.swing.JTextField ln1;
     private javax.swing.JPasswordField pw;
+    private javax.swing.JPasswordField pw1;
     private javax.swing.JComboBox<String> ty;
+    private javax.swing.JComboBox<String> ty1;
     private javax.swing.JTextField us;
+    private javax.swing.JTextField us1;
     // End of variables declaration//GEN-END:variables
 }
