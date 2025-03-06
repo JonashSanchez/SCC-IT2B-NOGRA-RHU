@@ -83,12 +83,12 @@ public class adminDashboard extends javax.swing.JFrame {
 
         acc_lname.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         acc_lname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_lname.setText("ADMIN");
+        acc_lname.setText("LAST NAME");
         jPanel1.add(acc_lname, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 130, 40));
 
         acc_email.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         acc_email.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        acc_email.setText("ADMIN");
+        acc_email.setText("EMAIL");
         jPanel1.add(acc_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 270, 40));
 
         jPanel7.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 580));

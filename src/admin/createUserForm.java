@@ -157,7 +157,7 @@ public class createUserForm extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
-        Navigation.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 80, 30));
+        Navigation.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 90, 40));
 
         update.setText("UPDATE");
         update.setEnabled(false);
@@ -166,7 +166,7 @@ public class createUserForm extends javax.swing.JFrame {
                 updateActionPerformed(evt);
             }
         });
-        Navigation.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        Navigation.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 90, 30));
 
         delete.setText("DELETE");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -174,20 +174,25 @@ public class createUserForm extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        Navigation.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        Navigation.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 90, 30));
 
         clear.setText("CLEAR");
-        Navigation.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        Navigation.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 90, 30));
 
-        cancel.setText("cancel");
+        cancel.setText("CANCEL");
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
             }
         });
-        Navigation.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, -1, -1));
+        Navigation.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 90, 30));
 
         refresh.setText("REFRESH");
+        refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshActionPerformed(evt);
+            }
+        });
         Navigation.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 90, 30));
 
         MainPanel.add(Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 580));
@@ -576,6 +581,13 @@ dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
 
        
     }//GEN-LAST:event_updateActionPerformed
+
+    private void refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshActionPerformed
+       
+       
+
+
+    }//GEN-LAST:event_refreshActionPerformed
 
     /**
      * @param args the command line arguments

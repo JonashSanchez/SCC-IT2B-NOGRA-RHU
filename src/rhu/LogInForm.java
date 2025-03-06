@@ -77,15 +77,11 @@ public class LogInForm extends javax.swing.JFrame {
 
         jLabel8 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
-        Navigation = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         user = new javax.swing.JTextField();
+        togglePass = new javax.swing.JToggleButton();
         pass = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -101,38 +97,18 @@ public class LogInForm extends javax.swing.JFrame {
         MainPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Navigation.setBackground(new java.awt.Color(0, 0, 0));
-        Navigation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel13.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad.png"))); // NOI18N
-        Navigation.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, -20, 530, 510));
-        Navigation.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 121, -1, -1));
-
-        jLabel11.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/med.png"))); // NOI18N
-        Navigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 550, 620));
-
-        jLabel10.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doc.png"))); // NOI18N
-        Navigation.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -370, 600, 1310));
-
-        MainPanel.add(Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 380, 580));
-
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Password:");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 110, 30));
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 110, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login Form");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 400, 70));
+        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 400, 70));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Username:");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 110, 30));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 110, 30));
 
         user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -140,11 +116,19 @@ public class LogInForm extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
-        MainPanel.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 260, 190, 40));
+        MainPanel.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
+
+        togglePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        togglePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togglePassActionPerformed(evt);
+            }
+        });
+        MainPanel.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 30, 30));
 
         pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pass.setForeground(new java.awt.Color(51, 51, 51));
-        MainPanel.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 340, 190, 40));
+        MainPanel.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 190, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
@@ -154,7 +138,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, -1, -1));
+        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 255, 51));
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -169,7 +153,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 400, -1, -1));
+        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,23 +163,21 @@ public class LogInForm extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 240, -1));
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 240, -1));
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 270, 210));
+        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, -40, 270, 210));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
         );
 
         pack();
@@ -258,6 +240,16 @@ public class LogInForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
+    private void togglePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_togglePassActionPerformed
+         if (togglePass.isSelected()) {  
+        pass.setEchoChar((char) 0); // Show password  
+        togglePass.setText("Hide");  
+    } else {  
+        pass.setEchoChar('*'); // Hide password  
+        togglePass.setText("Show");  
+    }  
+    }//GEN-LAST:event_togglePassActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -295,20 +287,16 @@ public class LogInForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JPanel Navigation;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPasswordField pass;
+    private javax.swing.JToggleButton togglePass;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

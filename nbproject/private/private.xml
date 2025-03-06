@@ -3,17 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/rhu/registrationForm.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/patientDashboard.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/config/dbConnect.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/rhu/LogInForm.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/createUserForm.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/adminUsers.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/userDashboard.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/adminDashboard.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/editUser.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/config/Session.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/NOGRA-GUI-NAHUMAN%20SA%20COMLAB%20TASK%201-4/SCC-IT2B-NOGRA-RHU/src/admin/editUsers.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/createUserForm.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/rhu/LogInForm.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/editUsers.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/adminDashboard.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/rhu/registrationForm.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/adminUsers.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/userDashboard.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/patientDashboard.java</file>
+            <file>file:/C:/Users/PC7/Desktop/NOGRA/SCC-IT2B-NOGRA-RHU/src/admin/editUser.java</file>
         </group>
     </open-files>
 </project-private>
