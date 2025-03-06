@@ -358,7 +358,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Municipal Health Officer"/>
                 <StringItem index="1" value="Staff"/>
-                <StringItem index="2" value="Patient"/>
+                <StringItem index="2" value="Frontdesk"/>
               </StringArray>
             </Property>
           </Properties>

@@ -244,9 +244,11 @@ public class editUser extends javax.swing.JPanel {
         );
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Navigation.setBackground(new java.awt.Color(102, 51, 255));
+        Navigation.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
         Navigation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setBackground(new java.awt.Color(102, 51, 255));
@@ -260,7 +262,7 @@ public class editUser extends javax.swing.JPanel {
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/doc.png"))); // NOI18N
-        Navigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -160, 470, 960));
+        Navigation.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -160, 470, 930));
 
         MainPanel.add(Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 580));
 

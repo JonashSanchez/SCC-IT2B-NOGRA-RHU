@@ -8,6 +8,7 @@ package rhu;
 import admin.adminDashboard;
 import admin.patientDashboard;
 import admin.userDashboard;
+import config.Session;
 import config.dbConnect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,12 +35,25 @@ public class LogInForm extends javax.swing.JFrame {
     
     public static boolean loginAcc(String username, String password){
     dbConnect connector = new dbConnect();
+    
     try {
         String query = "SELECT * FROM users WHERE u_username = '" + username + "' AND u_pass = '" + password + "'";
         ResultSet resultSet = connector.getData(query);
      if(resultSet.next()){
+         
          status = resultSet.getString("u_status"); 
          type = resultSet.getString("u_type"); 
+         Session sess = Session.getInstance();
+         sess.setUid(resultSet.getInt("u_id"));
+         sess.setFname(resultSet.getString("u_fname"));
+         sess.setLname(resultSet.getString("u_lname"));
+         
+         sess.setUemail(resultSet.getString("u_email"));
+         sess.setUcontact(resultSet.getString("u_contact"));
+          sess.setUtype(resultSet.getString("u_type"));
+          sess.setUstatus(resultSet.getString("u_status"));
+          
+       
             return true;
         } else {
             return false;
@@ -84,6 +98,7 @@ public class LogInForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        MainPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Navigation.setBackground(new java.awt.Color(0, 0, 0));
@@ -213,7 +228,7 @@ public class LogInForm extends javax.swing.JFrame {
                 userDashboard usd = new userDashboard();
                 usd.setVisible(true);
                 this.dispose();  
-            } else if(type.equals("Patient")) {  // Added condition for Patient
+            } else if(type.equals("Frontdesk")) {  // Added condition for Patient
                 patientDashboard ptd = new patientDashboard();
                 ptd.setVisible(true);
                 this.dispose();  
