@@ -20,6 +20,15 @@ public class adminDashboard extends javax.swing.JFrame {
      */
     public adminDashboard() {
         initComponents();
+          addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
+        public void componentMoved(java.awt.event.ComponentEvent evt) {
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            int centerX = (screenSize.width - getWidth()) / 2;
+            int centerY = (screenSize.height - getHeight()) / 2;
+            setLocation(centerX, centerY);
+        }
+    });
     }
 
     /**
@@ -55,7 +64,7 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -73,8 +82,9 @@ public class adminDashboard extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 140, 50));
 
         jLabel16.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad.png"))); // NOI18N
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, -60, 370, 330));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minglamain.png"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -50, 370, 330));
 
         acc_name.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -171,7 +181,7 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-         LogInForm lin = new  LogInForm();
+        adminUsers lin = new  adminUsers();
         lin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jPanel2MouseClicked

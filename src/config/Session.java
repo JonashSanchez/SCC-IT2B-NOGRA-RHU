@@ -17,6 +17,7 @@ public class Session {
     private String uemail;
     private String ucontact;
     private String utype;
+    private String uusername;
     private String ustatus;
     
     private Session(){
@@ -81,6 +82,16 @@ public class Session {
     public void setUtype(String utype) {
         this.utype = utype;
     }
+
+    public String getUusername() {
+        return uusername;
+    }
+
+    public void setUusername(String uusername) {
+        this.uusername = uusername;
+    }
+    
+    
 
     public String getUstatus() {
         return ustatus;

@@ -30,6 +30,7 @@ public class dbConnect {
             }
         }
         
+        
         //Function to save data
         public int insertData(String sql){
             int result;
@@ -71,6 +72,9 @@ public void updateData(String sql) {
     } catch (SQLException ex) {
         System.out.println("Connection Error: " + ex);
     }
+    
+    
+   
 }
 
         

@@ -104,7 +104,6 @@ public class createUserForm extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         Navigation = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         add = new javax.swing.JButton();
         update = new javax.swing.JButton();
         delete = new javax.swing.JButton();
@@ -137,18 +136,13 @@ public class createUserForm extends javax.swing.JFrame {
         MainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Navigation.setBackground(new java.awt.Color(255, 255, 255));
+        Navigation.setBackground(new java.awt.Color(153, 153, 153));
         Navigation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         Navigation.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        Navigation.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -40, 270, 230));
-
-        jLabel13.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/med.png"))); // NOI18N
-        Navigation.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 520, 620));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minglamain.png"))); // NOI18N
+        Navigation.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 270, 230));
 
         add.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         add.setText("ADD");
@@ -157,7 +151,7 @@ public class createUserForm extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
-        Navigation.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 90, 40));
+        Navigation.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 110, 40));
 
         update.setText("UPDATE");
         update.setEnabled(false);
@@ -166,7 +160,7 @@ public class createUserForm extends javax.swing.JFrame {
                 updateActionPerformed(evt);
             }
         });
-        Navigation.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 90, 30));
+        Navigation.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 110, 40));
 
         delete.setText("DELETE");
         delete.addActionListener(new java.awt.event.ActionListener() {
@@ -174,10 +168,10 @@ public class createUserForm extends javax.swing.JFrame {
                 deleteActionPerformed(evt);
             }
         });
-        Navigation.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 90, 30));
+        Navigation.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 110, 40));
 
         clear.setText("CLEAR");
-        Navigation.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 90, 30));
+        Navigation.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 110, 40));
 
         cancel.setText("CANCEL");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +179,7 @@ public class createUserForm extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        Navigation.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 90, 30));
+        Navigation.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 110, 40));
 
         refresh.setText("REFRESH");
         refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +187,7 @@ public class createUserForm extends javax.swing.JFrame {
                 refreshActionPerformed(evt);
             }
         });
-        Navigation.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 90, 30));
+        Navigation.add(refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 110, 40));
 
         MainPanel.add(Navigation, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 580));
 
@@ -307,7 +301,7 @@ public class createUserForm extends javax.swing.JFrame {
         });
         MainPanel.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 240, 40));
 
-        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Frontdesk" }));
+        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Citizen" }));
         ty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tyActionPerformed(evt);
@@ -636,7 +630,6 @@ dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
     public javax.swing.JTextField fn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

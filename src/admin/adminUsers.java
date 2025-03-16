@@ -25,6 +25,15 @@ public class adminUsers extends javax.swing.JFrame {
      */
     public adminUsers() {
         initComponents();
+          addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
+        public void componentMoved(java.awt.event.ComponentEvent evt) {
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            int centerX = (screenSize.width - getWidth()) / 2;
+            int centerY = (screenSize.height - getHeight()) / 2;
+            setLocation(centerX, centerY);
+        }
+    });
         displayData();
        
     }
@@ -89,13 +98,14 @@ public class adminUsers extends javax.swing.JFrame {
 
         jPanel7.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 600, -1));
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sad.png"))); // NOI18N
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -60, 370, 330));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minglamain.png"))); // NOI18N
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -50, 370, 330));
 
         acc_id.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         acc_id.setText("ID");

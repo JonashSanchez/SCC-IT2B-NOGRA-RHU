@@ -7,12 +7,15 @@ package rhu;
 
 import admin.adminDashboard;
 import admin.patientDashboard;
-import admin.userDashboard;
+import user.userDashboard;
 import config.Session;
 import config.dbConnect;
+import config.passwordHasher;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import user.staffDashboard;
 
 /**
  *
@@ -25,6 +28,15 @@ public class LogInForm extends javax.swing.JFrame {
      */
     public LogInForm() {
         initComponents();
+          addComponentListener(new java.awt.event.ComponentAdapter() {
+        @Override
+        public void componentMoved(java.awt.event.ComponentEvent evt) {
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            int centerX = (screenSize.width - getWidth()) / 2;
+            int centerY = (screenSize.height - getHeight()) / 2;
+            setLocation(centerX, centerY);
+        }
+    });
     }
     
     
@@ -33,35 +45,45 @@ public class LogInForm extends javax.swing.JFrame {
     static String type;
     
     
-    public static boolean loginAcc(String username, String password){
+   public static boolean loginAcc(String username, String password) {
     dbConnect connector = new dbConnect();
-    
+
     try {
-        String query = "SELECT * FROM users WHERE u_username = '" + username + "' AND u_pass = '" + password + "'";
+        String query = "SELECT * FROM users WHERE u_username = '" + username + "' ";
         ResultSet resultSet = connector.getData(query);
-     if(resultSet.next()){
-         
-         status = resultSet.getString("u_status"); 
-         type = resultSet.getString("u_type"); 
-         Session sess = Session.getInstance();
-         sess.setUid(resultSet.getInt("u_id"));
-         sess.setFname(resultSet.getString("u_fname"));
-         sess.setLname(resultSet.getString("u_lname"));
-         
-         sess.setUemail(resultSet.getString("u_email"));
-         sess.setUcontact(resultSet.getString("u_contact"));
-          sess.setUtype(resultSet.getString("u_type"));
-          sess.setUstatus(resultSet.getString("u_status"));
-          
-       
-            return true;
+
+        if (resultSet.next()) {
+            String hashedPass = resultSet.getString("u_pass");
+            String rehashedPass = passwordHasher.hashPassword(password);
+
+            
+
+            if (hashedPass.equals(rehashedPass)) {
+                status = resultSet.getString("u_status");
+                type = resultSet.getString("u_type");
+
+                Session sess = Session.getInstance();
+                sess.setUid(resultSet.getInt("u_id"));
+                sess.setFname(resultSet.getString("u_fname"));
+                sess.setLname(resultSet.getString("u_lname"));
+                sess.setUemail(resultSet.getString("u_email"));
+                sess.setUcontact(resultSet.getString("u_contact"));
+                sess.setUusername(resultSet.getString("u_username"));
+                sess.setUtype(resultSet.getString("u_type"));
+                sess.setUstatus(resultSet.getString("u_status"));
+
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
-    } catch (SQLException ex) {
+    } catch (SQLException | NoSuchAlgorithmException ex) {
         return false;
     }
 }
+
 
     
     
@@ -77,58 +99,30 @@ public class LogInForm extends javax.swing.JFrame {
 
         jLabel8 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        user = new javax.swing.JTextField();
-        togglePass = new javax.swing.JToggleButton();
-        pass = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        togglePass = new javax.swing.JToggleButton();
+        pass = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        user = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        video = new javax.swing.JLabel();
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/header bg.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
         MainPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("Password:");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 110, 30));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Login Form");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 400, 70));
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Username:");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 110, 30));
-
-        user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userActionPerformed(evt);
-            }
-        });
-        MainPanel.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
-
-        togglePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
-        togglePass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                togglePassActionPerformed(evt);
-            }
-        });
-        MainPanel.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 30, 30));
-
-        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        pass.setForeground(new java.awt.Color(51, 51, 51));
-        MainPanel.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 190, 40));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 0, 0));
@@ -138,7 +132,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 255, 51));
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -153,7 +147,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -163,21 +157,66 @@ public class LogInForm extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 240, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 240, -1));
+
+        togglePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        togglePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togglePassActionPerformed(evt);
+            }
+        });
+        jPanel1.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 30, 30));
+
+        pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pass.setForeground(new java.awt.Color(51, 51, 51));
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 190, 40));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Password:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 110, 30));
+
+        user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Username:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 110, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Login Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 400, 70));
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, -40, 270, 210));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -30, 270, 210));
+
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 370, 540));
+
+        video.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hazel Nogra\\Desktop\\video\\rhu.gif")); // NOI18N
+        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -207,11 +246,11 @@ public class LogInForm extends javax.swing.JFrame {
                 ads.setVisible(true);
                 this.dispose();
             } else if(type.equals("Staff")) {
-                userDashboard usd = new userDashboard();
+                staffDashboard usd = new staffDashboard();
                 usd.setVisible(true);
                 this.dispose();  
-            } else if(type.equals("Frontdesk")) {  // Added condition for Patient
-                patientDashboard ptd = new patientDashboard();
+            } else if(type.equals("User")) {  // Added condition for Patient
+                userDashboard ptd = new userDashboard();
                 ptd.setVisible(true);
                 this.dispose();  
             } else {
@@ -249,6 +288,10 @@ public class LogInForm extends javax.swing.JFrame {
         togglePass.setText("Show");  
     }  
     }//GEN-LAST:event_togglePassActionPerformed
+
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passActionPerformed
     
     /**
      * @param args the command line arguments
@@ -295,8 +338,10 @@ public class LogInForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField pass;
     private javax.swing.JToggleButton togglePass;
     private javax.swing.JTextField user;
+    private javax.swing.JLabel video;
     // End of variables declaration//GEN-END:variables
 }
