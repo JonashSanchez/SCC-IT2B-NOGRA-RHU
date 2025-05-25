@@ -24,6 +24,10 @@ public class registrationForm extends javax.swing.JFrame {
     /** Creates new form registrationForm */
     public registrationForm() {
         initComponents();
+           jPanel1.setOpaque(false);
+          // Example: semi-transparent white, 50% opacity
+jPanel1.setBackground(new Color(255, 255, 255, 128));  // RGBA, 128 out of 255 is 50% transparent
+jPanel1.setOpaque(true);  // Must be true to paint the background color
         
         fn.setText("Enter First Name");
         fn.setForeground(Color.GRAY);
@@ -97,8 +101,8 @@ us.setForeground(Color.GRAY);
 
         jLabel10 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         em = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -115,9 +119,9 @@ us.setForeground(Color.GRAY);
         ty = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
         togglePass2 = new javax.swing.JToggleButton();
-        vid = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        video = new javax.swing.JLabel();
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/main bg.jpg"))); // NOI18N
@@ -129,18 +133,17 @@ us.setForeground(Color.GRAY);
         MainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel14.setBackground(new java.awt.Color(102, 51, 255));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
+        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, -50, 200, 230));
+
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Type:");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, 110, 30));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registration Form");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 430, 70));
+        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 440, 110, 30));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Email:");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 110, 30));
+        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 340, 110, 30));
 
         em.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         em.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -161,7 +164,7 @@ us.setForeground(Color.GRAY);
                 emKeyReleased(evt);
             }
         });
-        MainPanel.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, 240, 40));
+        MainPanel.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 330, 240, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton1.setText("Cancel");
@@ -170,7 +173,7 @@ us.setForeground(Color.GRAY);
                 jButton1ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 550, 90, -1));
+        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 590, 90, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton2.setText("Register");
@@ -179,15 +182,15 @@ us.setForeground(Color.GRAY);
                 jButton2ActionPerformed(evt);
             }
         });
-        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 550, -1, -1));
+        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 590, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("First Name:");
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 110, 30));
+        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 240, 110, 30));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setText("Last Name:");
-        MainPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 110, 30));
+        MainPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, 110, 30));
 
         fn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fn.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -208,7 +211,7 @@ us.setForeground(Color.GRAY);
                 fnKeyReleased(evt);
             }
         });
-        MainPanel.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, 240, 40));
+        MainPanel.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 240, 40));
 
         ln.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         ln.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -229,7 +232,7 @@ us.setForeground(Color.GRAY);
                 lnKeyReleased(evt);
             }
         });
-        MainPanel.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, 240, 40));
+        MainPanel.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, 240, 40));
 
         pw.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pw.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -253,15 +256,15 @@ us.setForeground(Color.GRAY);
                 pwKeyTyped(evt);
             }
         });
-        MainPanel.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 240, 40));
+        MainPanel.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 530, 240, 40));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setText("Password:");
-        MainPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 110, 30));
+        MainPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, 110, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setText("Username:");
-        MainPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 110, 30));
+        MainPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 490, 110, 30));
 
         us.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         us.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -282,7 +285,7 @@ us.setForeground(Color.GRAY);
                 usKeyReleased(evt);
             }
         });
-        MainPanel.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, 240, 40));
+        MainPanel.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 480, 240, 40));
 
         cn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cn.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -303,26 +306,21 @@ us.setForeground(Color.GRAY);
                 cnKeyReleased(evt);
             }
         });
-        MainPanel.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 240, 40));
+        MainPanel.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 380, 240, 40));
 
-        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Citizen" }));
+        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Patient" }));
         ty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tyActionPerformed(evt);
             }
         });
-        MainPanel.add(ty, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 240, 40));
+        MainPanel.add(ty, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 240, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Contact No:");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 110, 30));
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 390, 110, 30));
 
-        jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel14.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, -60, 270, 230));
 
         togglePass2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
         togglePass2.addActionListener(new java.awt.event.ActionListener() {
@@ -330,20 +328,23 @@ us.setForeground(Color.GRAY);
                 togglePass2ActionPerformed(evt);
             }
         });
-        jPanel1.add(togglePass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 30, 30));
+        jPanel1.add(togglePass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 30, 30));
 
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 430, 610));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Registration Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 430, 70));
 
-        vid.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hazel Nogra\\Desktop\\video\\rhu.gif")); // NOI18N
-        MainPanel.add(vid, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 740));
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 430, 550));
+
+        video.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu orig.png"))); // NOI18N
+        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -220, 1370, 990));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,7 +376,7 @@ us.setForeground(Color.GRAY);
         || cn.getText().isEmpty() || us.getText().isEmpty() || pw.getText().isEmpty()) {
     
     JOptionPane.showMessageDialog(null, "All fields are required!");
-    return; // Exit the method if validation fails
+    return; 
 } 
 
 else if (pw.getText().length() < 8) {
@@ -392,20 +393,20 @@ else if (duplicateCheck()) {
 } 
 
 else {
-    dbConnect dbc = new dbConnect(); // Placed inside else block
+    dbConnect dbc = new dbConnect(); 
     try{
     String pass = passwordHasher.hashPassword(pw.getText());
 
     if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact, u_type, u_username, u_pass, u_status) "
             + "VALUES ('" + fn.getText() + "', '" + ln.getText() + "', '" + em.getText() + "', '" 
             + cn.getText() + "', '" + ty.getSelectedItem() + "', '" + us.getText() + "', '" 
-            + pass + "', 'Pending')") > 0)  // Ensure affected rows > 0
+            + pass + "', 'Pending')") > 0)  
     { 
         JOptionPane.showMessageDialog(null, "Registration Success!");
 
         LogInForm lg = new LogInForm();
         lg.setVisible(true);
-        this.dispose(); // Close the current form after successful registration
+        this.dispose(); 
     } 
     else {
         JOptionPane.showMessageDialog(null, "Connection Error!", 
@@ -439,47 +440,47 @@ else {
     private void cnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cnActionPerformed
              String contactNumber = cn.getText();
     
-    // Check if the text contains only digits
+    
     if (!contactNumber.matches("\\d+")) {
-        // Show an error message
+        
         JOptionPane.showMessageDialog(null, "Contact Number must contain only numbers!");
         
-        // Clear the field or reset focus
+        
         cn.setText("");
         cn.requestFocus();
     } else {
-        // Optionally handle valid input
+        
         System.out.println("Valid Contact Number: " + contactNumber);
     }
     }//GEN-LAST:event_cnActionPerformed
 
     private void fnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnKeyReleased
-         String firstName = fn.getText().trim(); // Trim spaces at start/end
+         String firstName = fn.getText().trim(); 
 
-    // If text is empty, do nothing (prevents early errors)
+    
     if (firstName.isEmpty()) return;
 
-    // Allow one or two names (letters only, single space allowed)
+    
     if (!firstName.matches("[A-Za-z]+( [A-Za-z]+)?")) {
         JOptionPane.showMessageDialog(this, "First Name must contain only letters and a single space (if needed).");
 
-        // Remove invalid characters (only letters and spaces allowed)
+        
         fn.setText(firstName.replaceAll("[^A-Za-z ]", "").replaceAll("\\s{2,}", " ").trim());
     }
             
     }//GEN-LAST:event_fnKeyReleased
 
     private void lnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lnKeyReleased
-       String lastName = ln.getText().trim(); // Trim spaces at start/end
+       String lastName = ln.getText().trim(); 
 
-    // If text is empty, do nothing (prevents early errors)
+    
     if (lastName.isEmpty()) return;
 
-    // Allow one or two names with optional "Jr." or "Sr."
+    
     if (!lastName.matches("[A-Za-z]+( [A-Za-z]+)?( (Jr\\.|Sr\\.))?")) {
         JOptionPane.showMessageDialog(this, "Last Name must contain only letters, one space, and 'Jr.' or 'Sr.' if applicable!");
 
-        // Remove invalid characters (only letters, spaces, and "." allowed)
+        
         ln.setText(lastName.replaceAll("[^A-Za-z .]", "").replaceAll("\\s{2,}", " ").trim());
     }
     }//GEN-LAST:event_lnKeyReleased
@@ -489,18 +490,18 @@ else {
     }//GEN-LAST:event_emKeyReleased
 
     private void cnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cnKeyReleased
-      String contactNumber = cn.getText().trim(); // Trim spaces
+      String contactNumber = cn.getText().trim(); 
 
-    // Check if input contains anything other than digits
+    
     if (!contactNumber.matches("\\d*")) { 
         JOptionPane.showMessageDialog(this, "Invalid character! Only numbers (0-9) are allowed.");
         
-        // Remove non-numeric characters
+        
         contactNumber = contactNumber.replaceAll("[^0-9]", "");
         cn.setText(contactNumber);
     }
 
-    // Limit to 11 characters
+    
     if (contactNumber.length() > 11) {
         cn.setText(contactNumber.substring(0, 11));
     }
@@ -545,17 +546,17 @@ else {
 }    
 
 private void validateEmail() {
-    String email = em.getText(); // Assuming 'em' is your JTextField
+    String email = em.getText(); 
     if (!email.matches("^[a-zA-Z0-9._%+-]+@(gmail\\.com|edu\\.com)$")) {
         JOptionPane.showMessageDialog(null, "Invalid email! Please enter a valid Gmail!!", "Error", JOptionPane.ERROR_MESSAGE);
-        em.setText(""); // Clear invalid input
+        em.setText(""); 
     }
     
       if (em.getText().trim().isEmpty()) {
         em.setText("Enter Email");
         em.setForeground(Color.GRAY);
-    } else {
-        validateEmail();
+   
+        
     }
     }//GEN-LAST:event_emFocusLost
 
@@ -706,7 +707,7 @@ private void validateEmail() {
     private javax.swing.JToggleButton togglePass2;
     private javax.swing.JComboBox<String> ty;
     private javax.swing.JTextField us;
-    private javax.swing.JLabel vid;
+    private javax.swing.JLabel video;
     // End of variables declaration//GEN-END:variables
 
 }

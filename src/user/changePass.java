@@ -5,6 +5,7 @@
  */
 package user;
 
+import USERS.accountDetails;
 import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
@@ -326,7 +327,7 @@ conpass.setEchoChar((char) 0); // Show text instead of hiding it
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        LogInForm lif = new LogInForm();
+       accountDetails lif = new accountDetails();
         lif.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -375,7 +376,7 @@ conpass.setEchoChar((char) 0); // Show text instead of hiding it
         Session sess = Session.getInstance();
         
         // Fetch current password from database
-        String query = "SELECT * FROM tbl_user WHERE u_id = '" + sess.getUid() + "'";
+        String query = "SELECT * FROM users WHERE u_id = '" + sess.getUid() + "'";
         ResultSet rs = dbc.getData(query);
         
         if (rs.next()) {
@@ -385,7 +386,7 @@ conpass.setEchoChar((char) 0); // Show text instead of hiding it
             // Validate old password
             if (oldDbPass.equals(oldHash)) { // Compare hashed passwords
                 String newHash = passwordHasher.hashPassword(newPassword);
-                String updateQuery = "UPDATE tbl_user SET u_pass = '" + newHash + "' WHERE u_id = '" + sess.getUid() + "'";
+                String updateQuery = "UPDATE users SET u_pass = '" + newHash + "' WHERE u_id = '" + sess.getUid() + "'";
                 
                 dbc.updateData(updateQuery);
                 JOptionPane.showMessageDialog(null, "Password successfully updated!");

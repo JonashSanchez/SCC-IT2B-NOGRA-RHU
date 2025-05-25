@@ -5,15 +5,28 @@
  */
 package admin;
 
+import tables.adminUsers;
 import config.dbConnect;
+import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import rhu.LogInForm;
-import rhu.registrationForm;
 import static rhu.registrationForm.email;
 import static rhu.registrationForm.usname;
+import tables.med_table;
 
 /**
  *
@@ -21,12 +34,96 @@ import static rhu.registrationForm.usname;
  */
 public class createUserForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form createUserForm
-     */
+    Color navcolor = Color.WHITE; // White background
+Color hovercolor = new Color(45, 45, 45); // Dark gray for hover
     public createUserForm() {
         initComponents();
+        
+       
+      
     }
+    public String destination ="";
+    File selectedFile;
+    public String oldpath;
+    public String path;
+    
+    public int FileExistenceChecker(String path){
+        File file = new File(path);
+        String fileName = file.getName();
+        
+        Path filePath = Paths.get("src/userimages", fileName);
+        boolean fileExists = Files.exists(filePath);
+        
+        if (fileExists) {
+            return 1;
+        } else {
+            return 0;
+        }
+    
+    }
+    
+    public static int getHeightFromWidth(String imagePath, int desiredWidth) {
+        try {
+            // Read the image file
+            File imageFile = new File(imagePath);
+            BufferedImage image = ImageIO.read(imageFile);
+            
+            // Get the original width and height of the image
+            int originalWidth = image.getWidth();
+            int originalHeight = image.getHeight();
+            
+            // Calculate the new height based on the desired width and the aspect ratio
+            int newHeight = (int) ((double) desiredWidth / originalWidth * originalHeight);
+            
+            return newHeight;
+        } catch (IOException ex) {
+            System.out.println("No image found!");
+        }
+        
+        return -1;
+    }
+    
+    public  ImageIcon ResizeImage(String ImagePath, byte[] pic, JLabel label) {
+    ImageIcon MyImage = null;
+        if(ImagePath !=null){
+            MyImage = new ImageIcon(ImagePath);
+        }else{
+            MyImage = new ImageIcon(pic);
+        }
+        
+    int newHeight = getHeightFromWidth(ImagePath, label.getWidth());
+
+    Image img = MyImage.getImage();
+    Image newImg = img.getScaledInstance(label.getWidth(), newHeight, Image.SCALE_SMOOTH);
+    ImageIcon image = new ImageIcon(newImg);
+    return image;
+}
+    
+      public void imageUpdater(String existingFilePath, String newFilePath){
+        File existingFile = new File(existingFilePath);
+        if (existingFile.exists()) {
+            String parentDirectory = existingFile.getParent();
+            File newFile = new File(newFilePath);
+            String newFileName = newFile.getName();
+            File updatedFile = new File(parentDirectory, newFileName);
+            existingFile.delete();
+            try {
+                Files.copy(newFile.toPath(), updatedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println("Image updated successfully.");
+            } catch (IOException e) {
+                System.out.println("Error occurred while updating the image: "+e);
+            }
+        } else {
+            try{
+                Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }catch(IOException e){
+                System.out.println("Error on update!");
+            }
+        }
+   }
+
+
+    
     
     public boolean duplicateCheck(){
         dbConnect dbc = new dbConnect();
@@ -37,9 +134,9 @@ public class createUserForm extends javax.swing.JFrame {
         if(resultSet.next()){
            
             email= resultSet.getString("u_email");
+                 em.setText("");
             if(email.equals(em.getText())){
                  JOptionPane.showMessageDialog(null, "Email is already used!");
-                 em.setText("");
             }
             
             usname= resultSet.getString("u_username");
@@ -129,6 +226,11 @@ public class createUserForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         usid = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        togglePass = new javax.swing.JToggleButton();
+        jPanel1 = new javax.swing.JPanel();
+        image = new javax.swing.JLabel();
+        select = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -146,6 +248,17 @@ public class createUserForm extends javax.swing.JFrame {
 
         add.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         add.setText("ADD");
+        add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addMouseExited(evt);
+            }
+        });
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
@@ -155,6 +268,14 @@ public class createUserForm extends javax.swing.JFrame {
 
         update.setText("UPDATE");
         update.setEnabled(false);
+        update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateMouseExited(evt);
+            }
+        });
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
@@ -163,6 +284,14 @@ public class createUserForm extends javax.swing.JFrame {
         Navigation.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 110, 40));
 
         delete.setText("DELETE");
+        delete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
+            }
+        });
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
@@ -171,9 +300,28 @@ public class createUserForm extends javax.swing.JFrame {
         Navigation.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 110, 40));
 
         clear.setText("CLEAR");
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                clearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                clearMouseExited(evt);
+            }
+        });
         Navigation.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 110, 40));
 
         cancel.setText("CANCEL");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelMouseExited(evt);
+            }
+        });
         cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelActionPerformed(evt);
@@ -182,6 +330,14 @@ public class createUserForm extends javax.swing.JFrame {
         Navigation.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 110, 40));
 
         refresh.setText("REFRESH");
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                refreshMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                refreshMouseExited(evt);
+            }
+        });
         refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshActionPerformed(evt);
@@ -252,6 +408,7 @@ public class createUserForm extends javax.swing.JFrame {
         MainPanel.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 240, 40));
 
         pw.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        pw.setEnabled(false);
         pw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pwActionPerformed(evt);
@@ -301,7 +458,7 @@ public class createUserForm extends javax.swing.JFrame {
         });
         MainPanel.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 240, 40));
 
-        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Citizen" }));
+        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Patient" }));
         ty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tyActionPerformed(evt);
@@ -343,11 +500,43 @@ public class createUserForm extends javax.swing.JFrame {
         jLabel10.setText("First Name:");
         MainPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 110, 30));
 
+        togglePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        togglePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                togglePassActionPerformed(evt);
+            }
+        });
+        MainPanel.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 30, 30));
+
+        jPanel1.setLayout(null);
+        jPanel1.add(image);
+        image.setBounds(10, 10, 210, 230);
+
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 150, 230, 250));
+
+        select.setText("SELECT");
+        select.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectActionPerformed(evt);
+            }
+        });
+        MainPanel.add(select, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 110, 40));
+
+        remove.setText("REMOVE");
+        remove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeActionPerformed(evt);
+            }
+        });
+        MainPanel.add(remove, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 420, 110, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1054, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +566,12 @@ public class createUserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_emKeyReleased
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-       dbConnect dbc = new dbConnect();   
-       if (fn.getText().trim().isEmpty() || ln.getText().trim().isEmpty() || em.getText().trim().isEmpty()
-        || cn.getText().trim().isEmpty() || us.getText().trim().isEmpty() || pw.getPassword().length == 0) {
+    dbConnect dbc = new dbConnect();   
+if (fn.getText().trim().isEmpty() || ln.getText().trim().isEmpty() || em.getText().trim().isEmpty()
+    || cn.getText().trim().isEmpty() || us.getText().trim().isEmpty() || pw.getPassword().length == 0) {
 
     JOptionPane.showMessageDialog(null, "All Fields are Required!");
-    return; // Exit the method if validation fails
+    return;
 }
 
 else if (pw.getPassword().length < 8) {
@@ -394,13 +583,20 @@ else if (pw.getPassword().length < 8) {
 else if (duplicateCheck()) {
     System.out.println("Duplicate Exists");
     return;
-} 
+}
 
+else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact, u_type, u_username, u_pass, u_status, u_image) " +
+    "VALUES('" + fn.getText().trim() + "', '" + ln.getText().trim() + "', '" + em.getText().trim() + "', '" +
+    cn.getText().trim() + "', '" + ty.getSelectedItem().toString() + "', '" + us.getText().trim() + "', '" +
+    new String(pw.getPassword()) + "', '" + uss.getSelectedItem().toString() + "', '" + destination + "')") > 0) {
 
-else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact, u_type, u_username, u_pass, u_status) "
-        + "VALUES('" + fn.getText().trim() + "', '" + ln.getText().trim() + "', '" + em.getText().trim() + "', '"
-        + cn.getText().trim() + "', '" + ty.getSelectedItem().toString() + "', '" + us.getText().trim() + "', '"
-        + new String(pw.getPassword()) + "', '" + uss.getSelectedItem().toString() + "')") > 0) {
+    try {
+        Files.copy(selectedFile.toPath(), new File(destination).toPath(), StandardCopyOption.REPLACE_EXISTING);
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(null, "Image upload failed: " + ex.getMessage(),
+                "Insert Image Error", JOptionPane.ERROR_MESSAGE);
+        return; // stop further actions if file copy fails
+    }
 
     JOptionPane.showMessageDialog(null, "Successfully Registered");
 
@@ -421,14 +617,14 @@ else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact
     private void fnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fnKeyReleased
         String firstName = fn.getText().trim(); // Trim spaces at start/end
 
-        // If text is empty, do nothing (prevents early errors)
+       
         if (firstName.isEmpty()) return;
 
-        // Allow one or two names (letters only, single space allowed)
+        
         if (!firstName.matches("[A-Za-z]+( [A-Za-z]+)?")) {
             JOptionPane.showMessageDialog(this, "First Name must contain only letters and a single space (if needed).");
 
-            // Remove invalid characters (only letters and spaces allowed)
+            
             fn.setText(firstName.replaceAll("[^A-Za-z ]", "").replaceAll("\\s{2,}", " ").trim());
         }
 
@@ -452,18 +648,6 @@ else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact
             ln.setText(lastName.replaceAll("[^A-Za-z .]", "").replaceAll("\\s{2,}", " ").trim());
         }
     }//GEN-LAST:event_lnKeyReleased
-
-    private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pwActionPerformed
-
-    private void pwKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyReleased
-
-    }//GEN-LAST:event_pwKeyReleased
-
-    private void pwKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyTyped
-
-    }//GEN-LAST:event_pwKeyTyped
 
     private void usActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usActionPerformed
         // TODO add your handling code here:
@@ -549,27 +733,38 @@ else if (dbc.insertData("INSERT INTO users (u_fname, u_lname, u_email, u_contact
     }//GEN-LAST:event_cancelActionPerformed
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-   
+    
 if(fn.getText().isEmpty() || ln.getText().isEmpty() || em.getText().isEmpty()
-   || us.getText().isEmpty() || pw.getText().isEmpty()) {
+   || us.getText().isEmpty() || destination.isEmpty()) {
     JOptionPane.showMessageDialog(null, "All fields are required!");
-} else if(pw.getText().length() < 8) {
-    JOptionPane.showMessageDialog(null, "Password character should be 8 above");
-    pw.setText("");
+
 } else if(updateCheck()) {
     System.out.println("Duplicate Exist");
 } else {
-   dbConnect dbc = new dbConnect();
-dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
-             + "u_lname = '" + ln.getText() + "', "
-             + "u_email = '" + em.getText() + "', u_contact = '" + cn.getText() + "', "
-             + "u_username = '" + us.getText() + "', "
-             + "u_pass = '" + pw.getText() + "', "
-             + "u_type = '" + ty.getSelectedItem() + "', "
-             + "u_status = '" + uss.getSelectedItem() + "' "
-             + "WHERE u_id = '" + usid.getText() + "'");
+    dbConnect dbc = new dbConnect();
+    dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
+                 + "u_lname = '" + ln.getText() + "', "
+                 + "u_email = '" + em.getText() + "', u_contact = '" + cn.getText() + "', "
+                 + "u_username = '" + us.getText() + "', "
+                 + "u_pass = '" + pw.getText() + "', "
+                 + "u_type = '" + ty.getSelectedItem() + "', "
+                 + "u_status = '" + uss.getSelectedItem() + "', "
+                 + "u_image = '" + destination + "' "
+                 + "WHERE u_id = '" + usid.getText() + "'");
 
+    // handle image file update
+    if(destination.isEmpty()) {
+        File existingFile = new File(oldpath);
+        if(existingFile.exists()) {
+            existingFile.delete();
+        }
+    } else {
+        if(!oldpath.equals(path)) {
+            imageUpdater(oldpath, path);
+        }
+    }
 }
+
 
 
 
@@ -582,6 +777,114 @@ dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
 
 
     }//GEN-LAST:event_refreshActionPerformed
+
+    private void togglePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_togglePassActionPerformed
+    
+    }//GEN-LAST:event_togglePassActionPerformed
+
+    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
+       JFileChooser fileChooser = new JFileChooser();
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        selectedFile = fileChooser.getSelectedFile();
+                        destination = "src/userimages/" + selectedFile.getName();
+                        path  = selectedFile.getAbsolutePath();
+                        
+                        
+                        if(FileExistenceChecker(path) == 1){
+                          JOptionPane.showMessageDialog(null, "File Already Exist, Rename or Choose another!");
+                            destination = "";
+                            path="";
+                        }else{
+                            image.setIcon(ResizeImage(path, null, image));
+                            select.setEnabled(false);
+                            remove.setEnabled(true);
+                           
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("File Error!");
+                    }
+                }
+    }//GEN-LAST:event_selectActionPerformed
+
+    private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
+        remove.setEnabled(false);
+        remove.setEnabled(true);
+        image.setIcon(null);
+        destination="";
+        path="";
+    }//GEN-LAST:event_removeActionPerformed
+
+    private void pwKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyTyped
+
+    }//GEN-LAST:event_pwKeyTyped
+
+    private void pwKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pwKeyReleased
+
+    }//GEN-LAST:event_pwKeyReleased
+
+    private void pwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pwActionPerformed
+
+    private void addMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseEntered
+         add.setBackground(hovercolor);
+    }//GEN-LAST:event_addMouseEntered
+
+    private void addMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseExited
+        add.setBackground(navcolor);
+    }//GEN-LAST:event_addMouseExited
+
+    private void updateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseEntered
+      update.setBackground(hovercolor);
+    }//GEN-LAST:event_updateMouseEntered
+
+    private void updateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseExited
+       update.setBackground(navcolor);
+    }//GEN-LAST:event_updateMouseExited
+
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseEntered
+        delete.setBackground(hovercolor);
+    }//GEN-LAST:event_deleteMouseEntered
+
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteMouseExited
+         delete.setBackground(navcolor);
+    }//GEN-LAST:event_deleteMouseExited
+
+    private void clearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseEntered
+       clear.setBackground(hovercolor);
+    }//GEN-LAST:event_clearMouseEntered
+
+    private void clearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseExited
+        clear.setBackground(navcolor);
+    }//GEN-LAST:event_clearMouseExited
+
+    private void cancelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseEntered
+        cancel.setBackground(hovercolor);
+    }//GEN-LAST:event_cancelMouseEntered
+
+    private void cancelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseExited
+        cancel.setBackground(navcolor);
+    }//GEN-LAST:event_cancelMouseExited
+
+    private void refreshMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseEntered
+       refresh.setBackground(hovercolor);
+    }//GEN-LAST:event_refreshMouseEntered
+
+    private void refreshMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseExited
+        refresh.setBackground(navcolor);
+    }//GEN-LAST:event_refreshMouseExited
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+              adminUsers rfm = new  adminUsers();
+        rfm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelMouseClicked
+
+    private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addMouseClicked
 
     /**
      * @param args the command line arguments
@@ -628,6 +931,7 @@ dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
     private javax.swing.JButton delete;
     public javax.swing.JTextField em;
     public javax.swing.JTextField fn;
+    public javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
@@ -639,9 +943,13 @@ dbc.updateData("UPDATE users SET u_fname = '" + fn.getText() + "', "
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField ln;
-    public javax.swing.JPasswordField pw;
+    private javax.swing.JPasswordField pw;
     private javax.swing.JButton refresh;
+    public javax.swing.JButton remove;
+    public javax.swing.JButton select;
+    private javax.swing.JToggleButton togglePass;
     public javax.swing.JComboBox<String> ty;
     public javax.swing.JButton update;
     public javax.swing.JTextField us;

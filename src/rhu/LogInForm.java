@@ -6,8 +6,8 @@
 package rhu;
 
 import admin.adminDashboard;
-import admin.patientDashboard;
-import user.userDashboard;
+
+import USERS.userDashboard;
 import config.Session;
 import config.dbConnect;
 import config.passwordHasher;
@@ -15,7 +15,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import user.staffDashboard;
+import Staff.staffDashboard;
+import java.awt.Color;
 
 /**
  *
@@ -28,6 +29,11 @@ public class LogInForm extends javax.swing.JFrame {
      */
     public LogInForm() {
         initComponents();
+          jPanel1.setOpaque(false);
+          // Example: semi-transparent white, 50% opacity
+jPanel1.setBackground(new Color(255, 255, 255, 128));  // RGBA, 128 out of 255 is 50% transparent
+jPanel1.setOpaque(true);  // Must be true to paint the background color
+
           addComponentListener(new java.awt.event.ComponentAdapter() {
         @Override
         public void componentMoved(java.awt.event.ComponentEvent evt) {
@@ -46,22 +52,24 @@ public class LogInForm extends javax.swing.JFrame {
     
     
    public static boolean loginAcc(String username, String password) {
-    dbConnect connector = new dbConnect();
+     dbConnect connector = new dbConnect();
 
     try {
         String query = "SELECT * FROM users WHERE u_username = '" + username + "' ";
         ResultSet resultSet = connector.getData(query);
 
         if (resultSet.next()) {
-            String hashedPass = resultSet.getString("u_pass");
-            String rehashedPass = passwordHasher.hashPassword(password);
+            String storedHashedPass = resultSet.getString("u_pass");
 
-            
+            // Hash the input password using the same hashing algorithm
+            String hashedInputPassword = passwordHasher.hashPassword(password); // Ensure SHA-512 or SHA-256 is used here
 
-            if (hashedPass.equals(rehashedPass)) {
+            // Compare the hashed input password with the stored hashed password
+            if (storedHashedPass.equals(hashedInputPassword)) {
                 status = resultSet.getString("u_status");
                 type = resultSet.getString("u_type");
 
+                // Set the session as before...
                 Session sess = Session.getInstance();
                 sess.setUid(resultSet.getInt("u_id"));
                 sess.setFname(resultSet.getString("u_fname"));
@@ -72,15 +80,21 @@ public class LogInForm extends javax.swing.JFrame {
                 sess.setUtype(resultSet.getString("u_type"));
                 sess.setUstatus(resultSet.getString("u_status"));
 
+                // Log the login action...
+                String logQuery = "INSERT INTO tbl_logs (u_id, name, action_time, log_action) " +
+                                  "VALUES (" + sess.getUid() + ", '" +
+                                  sess.getFname() + " " + sess.getLname() + "', NOW(), 'Logged in to the system')";
+                connector.updateData(logQuery);
+
                 return true;
             } else {
-                return false;
+                return false; // Password mismatch
             }
         } else {
-            return false;
+            return false; // No such user
         }
     } catch (SQLException | NoSuchAlgorithmException ex) {
-        return false;
+        return false; // Exception or error during login process
     }
 }
 
@@ -110,6 +124,7 @@ public class LogInForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        forgotPass = new javax.swing.JLabel();
         video = new javax.swing.JLabel();
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,7 +147,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(0, 255, 51));
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -147,7 +162,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -157,7 +172,7 @@ public class LogInForm extends javax.swing.JFrame {
                 jLabel5MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 240, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 240, -1));
 
         togglePass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
         togglePass.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +180,7 @@ public class LogInForm extends javax.swing.JFrame {
                 togglePassActionPerformed(evt);
             }
         });
-        jPanel1.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 30, 30));
+        jPanel1.add(togglePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 30, 30));
 
         pass.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pass.setForeground(new java.awt.Color(51, 51, 51));
@@ -174,11 +189,11 @@ public class LogInForm extends javax.swing.JFrame {
                 passActionPerformed(evt);
             }
         });
-        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 190, 40));
+        jPanel1.add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 190, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Password:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 110, 30));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 110, 30));
 
         user.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         user.addActionListener(new java.awt.event.ActionListener() {
@@ -186,31 +201,39 @@ public class LogInForm extends javax.swing.JFrame {
                 userActionPerformed(evt);
             }
         });
-        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 190, 40));
+        jPanel1.add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 190, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Username:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 110, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 110, 30));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login Form");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 140, 400, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 80, 400, 70));
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -30, 270, 210));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -40, 270, 210));
 
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 370, 540));
+        forgotPass.setText("Forgot Password?");
+        forgotPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                forgotPassMouseClicked(evt);
+            }
+        });
+        jPanel1.add(forgotPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
-        video.setIcon(new javax.swing.ImageIcon("C:\\Users\\Hazel Nogra\\Desktop\\video\\rhu.gif")); // NOI18N
-        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 660));
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, 370, 450));
+
+        video.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu orig.png"))); // NOI18N
+        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -220, 1370, 990));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,38 +256,38 @@ public class LogInForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-       if(loginAcc(user.getText(), pass.getText())) {
-        
-        if(!status.equals("Active")) {
-            JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin"); 
-        } else { 
-            JOptionPane.showMessageDialog(null, "Login Success");
-            
-            if(type.equals("Municipal Health Officer")) {
-                adminDashboard ads = new adminDashboard();
-                ads.setVisible(true);
-                this.dispose();
-            } else if(type.equals("Staff")) {
-                staffDashboard usd = new staffDashboard();
-                usd.setVisible(true);
-                this.dispose();  
-            } else if(type.equals("User")) {  // Added condition for Patient
-                userDashboard ptd = new userDashboard();
-                ptd.setVisible(true);
-                this.dispose();  
-            } else {
-                JOptionPane.showMessageDialog(null, "No Account found, Contact the Admin"); 
-            }
-        }
-    
-    } else {
-        JOptionPane.showMessageDialog(null, "Login Failed");
-        user.setText("");
-       
-            pass.setText(""); 
-          
-    }
+
+        if(loginAcc(user.getText(), pass.getText())) {
+
+         if(!status.equals("Active")) {
+             JOptionPane.showMessageDialog(null, "In-Active Account, Contact the Admin"); 
+         } else { 
+             JOptionPane.showMessageDialog(null, "Login Success");
+
+             if(type.equals("Municipal Health Officer")) {
+                 adminDashboard ads = new adminDashboard();
+                 ads.setVisible(true);
+                 this.dispose();
+             } else if(type.equals("Staff")) {
+                 staffDashboard usd = new staffDashboard();
+                 usd.setVisible(true);
+                 this.dispose();  
+             } else if(type.equals("Patient")) {  // Added condition for Patient
+                 userDashboard ptd = new userDashboard();
+                 ptd.setVisible(true);
+                 this.dispose();  
+             } else {
+                 JOptionPane.showMessageDialog(null, "No Account found, Contact the Admin"); 
+             }
+         }
+
+     } else {
+         JOptionPane.showMessageDialog(null, "Login Failed");
+         user.setText("");
+
+             pass.setText(""); 
+
+     }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
@@ -292,6 +315,12 @@ public class LogInForm extends javax.swing.JFrame {
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passActionPerformed
+
+    private void forgotPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPassMouseClicked
+        forgotPass rfm = new forgotPass();
+        rfm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_forgotPassMouseClicked
     
     /**
      * @param args the command line arguments
@@ -330,6 +359,7 @@ public class LogInForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JLabel forgotPass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

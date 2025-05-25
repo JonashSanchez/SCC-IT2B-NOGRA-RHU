@@ -19,11 +19,13 @@ public class Session {
     private String utype;
     private String uusername;
     private String ustatus;
-    
+    private int pid;
+     private int aid;
+      private int mid;
     private Session(){
         //Private cons.prevents instance
     }
-
+    
     public static synchronized Session getInstance() {
      if(instance==null){
          instance = new Session();
@@ -33,6 +35,18 @@ public class Session {
 
     public static boolean isInstanceEmpty() {
         return instance == null;
+    }
+    
+    public int getMid() {
+        return mid;
+    }
+    
+    public int getPid() {
+        return pid;
+    }
+    
+    public int getAid() {
+        return aid;
     }
 
     public int getUid() {

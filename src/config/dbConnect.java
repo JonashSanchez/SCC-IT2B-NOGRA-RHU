@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class dbConnect {
     
-    private Connection connect;
+    public Connection connect;
 
        // constructor to connect to our database
         public dbConnect(){
@@ -77,31 +77,5 @@ public void updateData(String sql) {
    
 }
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
 }
