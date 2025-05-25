@@ -28,11 +28,20 @@ public class medrelease_table extends javax.swing.JFrame {
           displayMedReleases();
     }
     
-    public void displayMedReleases() {
+public void displayMedReleases() {
     try {
         dbConnect dbc = new dbConnect();
         ResultSet rs = dbc.getData(
-            "SELECT mr_id AS 'Release ID', m_id AS 'Medicine ID', qty_released AS 'Quantity Released', released_date AS 'Release Date' FROM tbl_medicine_release"
+            "SELECT mr.mr_id AS 'Release ID', " +
+            "m.m_name AS 'Medicine Name', " +
+            "a.a_id AS 'Appointment ID', " +
+            "u.u_fname AS 'Patient First Name', " +
+            "mr.qty_released AS 'Quantity Released', " +
+            "mr.released_date AS 'Release Date' " +
+            "FROM tbl_medicine_release mr " +
+            "JOIN tbl_medicines m ON mr.m_id = m.m_id " +
+            "JOIN tbl_appointments a ON mr.a_id = a.a_id " +
+            "JOIN users u ON a.u_id = u.u_id"
         );
         medreleaseTable.setModel(DbUtils.resultSetToTableModel(rs));
         rs.close();
@@ -40,6 +49,8 @@ public class medrelease_table extends javax.swing.JFrame {
         System.out.println("Errors: " + ex.getMessage());
     }
 }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

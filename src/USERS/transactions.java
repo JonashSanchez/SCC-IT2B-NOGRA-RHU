@@ -196,27 +196,34 @@ private String userId;
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-     int selectedRow = transactionsTable.getSelectedRow();
-        if (selectedRow != -1) {
-            // Build the receipt
-            StringBuilder receiptText = new StringBuilder();
-            receiptText.append("------- RHU APPOINTMENT RECEIPT -------\n\n");
-            receiptText.append("Appointment ID: ").append(transactionsTable.getValueAt(selectedRow, 0)).append("\n");
-            receiptText.append("Service Reason: ").append(transactionsTable.getValueAt(selectedRow, 1)).append("\n");
-            receiptText.append("Date: ").append(transactionsTable.getValueAt(selectedRow, 2)).append("\n");
-            receiptText.append("Time: ").append(transactionsTable.getValueAt(selectedRow, 3)).append("\n");
-            receiptText.append("Status: ").append(transactionsTable.getValueAt(selectedRow, 4)).append("\n");
-            receiptText.append("Medicine Released: ").append(transactionsTable.getValueAt(selectedRow, 5)).append("\n");
-            receiptText.append("Quantity: ").append(transactionsTable.getValueAt(selectedRow, 6)).append("\n");
-            receiptText.append("\n----------------------------------------");
+ int selectedRow = transactionsTable.getSelectedRow();
+if (selectedRow != -1) {
+    // Build the receipt
+    StringBuilder receiptText = new StringBuilder();
+    receiptText.append("========================================\n");
+    receiptText.append("         RHU APPOINTMENT RECEIPT        \n");
+    receiptText.append("========================================\n\n");
+    
+    receiptText.append(String.format("%-20s: %s\n", "Appointment ID", transactionsTable.getValueAt(selectedRow, 0)));
+    receiptText.append(String.format("%-20s: %s\n", "Service Reason", transactionsTable.getValueAt(selectedRow, 1)));
+    receiptText.append(String.format("%-20s: %s\n", "Date", transactionsTable.getValueAt(selectedRow, 2)));
+    receiptText.append(String.format("%-20s: %s\n", "Time", transactionsTable.getValueAt(selectedRow, 3)));
+    receiptText.append(String.format("%-20s: %s\n", "Status", transactionsTable.getValueAt(selectedRow, 4)));
+    receiptText.append(String.format("%-20s: %s\n", "Medicine Released", transactionsTable.getValueAt(selectedRow, 5)));
+    receiptText.append(String.format("%-20s: %s\n", "Quantity", transactionsTable.getValueAt(selectedRow, 6)));
 
-            // Open printreceipt window with userId and receipt text
-            printreceipt rfm = new printreceipt(userId, receiptText.toString());
-            rfm.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Please select a transaction from the table first.");
-        }
+    receiptText.append("\n========================================\n");
+    receiptText.append("     Thank you for your appointment!    \n");
+    receiptText.append("========================================");
+
+    // Open printreceipt window with userId and receipt text
+    printreceipt rfm = new printreceipt(userId, receiptText.toString());
+    rfm.setVisible(true);
+    this.dispose();
+} else {
+    JOptionPane.showMessageDialog(this, "Please select a transaction from the table first.");
+}
+
     }//GEN-LAST:event_jPanel2MouseClicked
 
     /**

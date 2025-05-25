@@ -113,6 +113,7 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
 
         jLabel8 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -123,9 +124,8 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
         user = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         forgotPass = new javax.swing.JLabel();
-        video = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/header bg.jpg"))); // NOI18N
@@ -136,6 +136,10 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
         MainPanel.setBackground(new java.awt.Color(255, 255, 255));
         MainPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
         MainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setBackground(new java.awt.Color(102, 51, 255));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
+        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, -50, 270, 210));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -210,11 +214,7 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Login Form");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 80, 400, 70));
-
-        jLabel14.setBackground(new java.awt.Color(102, 51, 255));
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, -40, 270, 210));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 90, 400, 70));
 
         forgotPass.setText("Forgot Password?");
         forgotPass.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -224,10 +224,10 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
         });
         jPanel1.add(forgotPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, -1, -1));
 
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, 370, 450));
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 90, 370, 450));
 
-        video.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu orig.png"))); // NOI18N
-        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -220, 1370, 990));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu3.png"))); // NOI18N
+        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,9 +237,7 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -365,6 +363,7 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
@@ -372,6 +371,5 @@ jPanel1.setOpaque(true);  // Must be true to paint the background color
     private javax.swing.JPasswordField pass;
     private javax.swing.JToggleButton togglePass;
     private javax.swing.JTextField user;
-    private javax.swing.JLabel video;
     // End of variables declaration//GEN-END:variables
 }

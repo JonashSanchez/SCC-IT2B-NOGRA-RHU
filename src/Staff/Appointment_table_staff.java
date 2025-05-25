@@ -5,9 +5,13 @@
  */
 package Staff;
 
+import EDITFORMS.editAppointment;
 import config.dbConnect;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import tables.med_table;
@@ -17,13 +21,42 @@ import tables.med_table;
  * @author Hazel Nogra
  */
 public class Appointment_table_staff extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form Appointment_table_staff
      */
     public Appointment_table_staff() {
         initComponents();
+         displayAppointments();
     }
+    
+   public void displayAppointments() {
+    try {
+        dbConnect dbc = new dbConnect();
+
+        // Query to join appointments with users and show only approved ones
+        String query = "SELECT " +
+            "a.a_id AS 'Appointment ID', " +
+            "u.u_fname AS 'User Name', " +
+            "a.a_date AS 'Date', " +
+            "a.a_time AS 'Time', " +
+            "a.a_reason AS 'Reason', " +
+            "a.appo_status AS 'Status' " +
+            "FROM tbl_appointments a " +
+            "JOIN users u ON a.u_id = u.u_id " +
+            "WHERE a.appo_status = 'approved'";
+
+        ResultSet rs = dbc.getData(query);
+
+        appointmentTable.setModel(net.proteanit.sql.DbUtils.resultSetToTableModel(rs));
+        rs.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Error fetching appointment data: " + ex.getMessage());
+    }
+}
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,7 +114,7 @@ public class Appointment_table_staff extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minglamain.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -50, 370, 330));
 
-        jPanel7.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 580));
+        jPanel7.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 590));
 
         jLabel1.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -206,11 +239,9 @@ public class Appointment_table_staff extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 593, Short.MAX_VALUE)
+            .addGap(0, 591, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,44 +293,51 @@ public class Appointment_table_staff extends javax.swing.JFrame {
 
     private void editMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseClicked
         int rowIndex = appointmentTable.getSelectedRow();
-        if (rowIndex < 0) {
-            JOptionPane.showMessageDialog(null, "Please select an appointment!");
-        } else {
-            try {
-                dbConnect dbc = new dbConnect();
-                TableModel tbl = appointmentTable.getModel();
+    if (rowIndex < 0) {
+        JOptionPane.showMessageDialog(null, "Please select an appointment!");
+    } else {
+        try {
+            dbConnect dbc = new dbConnect(); 
+            TableModel tbl = appointmentTable.getModel();
 
-                String a_id = tbl.getValueAt(rowIndex, 0).toString(); // assuming appid is column 0
+            String a_id = tbl.getValueAt(rowIndex, 0).toString(); // assuming appid is column 0
 
-                ResultSet rs = dbc.getData("SELECT * FROM tbl_appointments WHERE a_id = '" + a_id + "'");
+            ResultSet rs = dbc.getData("SELECT * FROM tbl_appointments WHERE a_id = '" + a_id + "'");
 
-                if (rs.next()) {
-                    editAppointmentstaff ea = new editAppointmentstaff();
+            if (rs.next()) {
+                editAppointmentstaff ea = new editAppointmentstaff();
 
-                    // Set values in editAppointment frame
-                    ea.appid.setText(String.valueOf(rs.getInt("a_id"))); // ID (not editable)
-                    ea.appdate.setText(rs.getString("a_date"));          // Date
-                    ea.apptime.setText(rs.getString("a_time"));          // Time
-                    ea.appreason.setText(rs.getString("a_reason"));      // Reason
-                    ea.appstatus.setSelectedItem(rs.getString("appo_status")); // Enum dropdown
+                // Set values in editAppointment frame
+                ea.appid.setText(String.valueOf(rs.getInt("a_id"))); // ID (not editable)
 
-                    // Disable editing of appid field
-                    ea.appid.setEnabled(false);
-
-                    // Show edit frame
-                    ea.setVisible(true);
-
-                    // Close current window
-                    this.dispose();
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Appointment not found!");
+                // Parse and set the date properly
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = sdf.parse(rs.getString("a_date"));
+                   ea.appdate.setDate(date); // for a JDateChooser or similar
+                } catch (ParseException pe) {
+                    pe.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Invalid date format in database.");
                 }
 
-            } catch (SQLException ex) {
-                System.out.println("Error: " + ex.getMessage());
+                ea.apptime.setText(rs.getString("a_time"));          // Time
+                ea.appreason.setText(rs.getString("a_reason"));      // Reason
+                ea.appstatus.setSelectedItem(rs.getString("appo_status")); // Enum dropdown
+
+                ea.appid.setEnabled(false);  // ID is not editable
+
+                ea.setVisible(true);
+                this.dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Appointment not found!");
             }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage());
         }
+    }
     }//GEN-LAST:event_editMouseClicked
 
     private void editMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editMouseEntered

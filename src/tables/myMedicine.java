@@ -18,12 +18,14 @@ import user.medicine;
  */
 public class myMedicine extends javax.swing.JFrame {
      private int appointmentId;
+      private String uid; // <-- add this
 
     /**
      * Creates new form myMedicine
      */
-    public myMedicine(int a_id) {
+    public myMedicine(int a_id, String uid) {
         initComponents();
+              this.uid = uid;
           this.appointmentId = a_id;
         displayMedicines(a_id);
     }
@@ -101,7 +103,7 @@ public class myMedicine extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("MEDICINE RECORDS");
-        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 570, 70));
+        jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 570, 70));
 
         jLabel2.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back.png"))); // NOI18N
@@ -139,8 +141,8 @@ public class myMedicine extends javax.swing.JFrame {
     }//GEN-LAST:event_medicineMouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-    myAppointment rfm = new  myAppointment();
-        rfm.setVisible(true);
+    myAppointment myam = new  myAppointment(uid);
+        myam.setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_jLabel2MouseClicked
 
@@ -174,7 +176,7 @@ public class myMedicine extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              
+                new myMedicine(1, "sample_uid").setVisible(true);
             }
         });
     }

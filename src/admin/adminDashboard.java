@@ -10,6 +10,7 @@ import REPORTS.CombinedReportChart;
 import REPORTS.REPORTS;
 import tables.adminUsers;
 import config.Session;
+import config.dbConnect;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -123,6 +124,8 @@ Color sidecolorhover = new Color(240, 240, 240);     // Medium blue
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -451,7 +454,41 @@ Color sidecolorhover = new Color(240, 240, 240);     // Medium blue
                 jLabel3MouseClicked(evt);
             }
         });
-        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 700, 140, 50));
+        jPanel7.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 140, 50));
+
+        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel10MouseExited(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jLabel1.setText("LOGOUT");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jLabel1)
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        jPanel7.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 710, 180, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -537,7 +574,7 @@ Color sidecolorhover = new Color(240, 240, 240);     // Medium blue
     }//GEN-LAST:event_jPanel4MouseExited
 
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-           appointment_table rfm = new  appointment_table(false); // SELECT button disabled
+        appointment_table rfm = new appointment_table(false, false); // disable SELECT button, show all
     rfm.setVisible(true);
     this.dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
@@ -626,6 +663,28 @@ try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/rhu", 
         jPanel9.setBackground(sidecolor);
     }//GEN-LAST:event_jPanel9MouseExited
 
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+          Session sess = Session.getInstance(); // get session info
+    dbConnect connector = new dbConnect(); // your DB connection
+
+    String logQuery = "INSERT INTO tbl_logs (u_id, name, action_time, log_action) " +
+                      "VALUES (" + sess.getUid() + ", '" +
+                      sess.getFname() + " " + sess.getLname() + "', NOW(), ' AdminLogged out of the system')";
+
+    connector.updateData(logQuery); // log the action
+
+    this.dispose(); // close the current window
+        
+    }//GEN-LAST:event_jPanel10MouseClicked
+
+    private void jPanel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseEntered
+         jPanel10.setBackground(hovercolor);
+    }//GEN-LAST:event_jPanel10MouseEntered
+
+    private void jPanel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseExited
+        jPanel10.setBackground(navcolor);
+    }//GEN-LAST:event_jPanel10MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -666,6 +725,7 @@ try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/rhu", 
     private javax.swing.JLabel acc_lname;
     private javax.swing.JLabel acc_name;
     private javax.swing.JLabel admin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -681,6 +741,7 @@ try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost/rhu", 
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

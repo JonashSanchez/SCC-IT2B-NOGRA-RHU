@@ -25,12 +25,23 @@ import java.util.Calendar;
  * @author Hazel Nogra
  */
 public class appointment_table extends javax.swing.JFrame {
-    
-   private boolean isSelectEnabled;
+      private boolean isSelectEnabled;
+    private boolean showOnlyApproved; // New flag
+  
 
     // Default constructor that calls the overloaded constructor with 'true' (select enabled)
     public appointment_table() {
-        this(true); // Default: select enabled
+        this(true, true); // Default: select enabled
+    }
+    
+     public appointment_table(boolean enableSelect, boolean showOnlyApproved) {
+        initComponents();
+        this.isSelectEnabled = enableSelect;
+        this.showOnlyApproved = showOnlyApproved;
+        displayAppointments();
+
+        select.setEnabled(enableSelect);
+        select.setVisible(enableSelect);
     }
 
     // Overloaded constructor with select button control
@@ -44,16 +55,36 @@ public class appointment_table extends javax.swing.JFrame {
         select.setVisible(enableSelect); // Optionally hide the button
     }
 
-    public void displayAppointments() {
-        try {
-            dbConnect dbc = new dbConnect();
-            ResultSet rs = dbc.getData("SELECT a_id AS 'Appointment ID', u_id AS 'User ID', a_date AS 'Date', a_time AS 'Time', a_reason AS 'Reason', appo_status AS 'Status' FROM tbl_appointments");
-            appointmentTable.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-        } catch (SQLException ex) {
-            System.out.println("Errors: " + ex.getMessage());
+ public void displayAppointments() {
+    try {
+        dbConnect dbc = new dbConnect();
+
+        // Base query with JOIN to include user first name
+        String query = "SELECT " +
+            "a.a_id AS 'Appointment ID', " +
+            "u.u_fname AS 'User Name', " +
+            "a.a_date AS 'Date', " +
+            "a.a_time AS 'Time', " +
+            "a.a_reason AS 'Reason', " +
+            "a.appo_status AS 'Status' " +
+            "FROM tbl_appointments a " +
+            "JOIN users u ON a.u_id = u.u_id";
+
+        // Apply filter if showOnlyApproved is true
+        if (showOnlyApproved) {
+            query += " WHERE a.appo_status = 'approved'";
         }
+
+        ResultSet rs = dbc.getData(query);
+        appointmentTable.setModel(DbUtils.resultSetToTableModel(rs));
+        rs.close();
+    } catch (SQLException ex) {
+        System.out.println("Errors: " + ex.getMessage());
     }
+}
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

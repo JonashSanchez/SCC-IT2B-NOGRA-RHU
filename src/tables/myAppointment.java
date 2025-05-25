@@ -29,7 +29,7 @@ public class myAppointment extends javax.swing.JFrame {
     }
 
     myAppointment() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
     
    public void displayAppointments(String uid) {
@@ -98,12 +98,14 @@ public class myAppointment extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minglamain.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -50, 370, 330));
 
+        med.setBackground(new java.awt.Color(153, 153, 153));
         med.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 medMouseClicked(evt);
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel3.setText("SELECT");
 
         javax.swing.GroupLayout medLayout = new javax.swing.GroupLayout(med);
@@ -112,8 +114,8 @@ public class myAppointment extends javax.swing.JFrame {
             medLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(medLayout.createSequentialGroup()
                 .addGap(76, 76, 76)
-                .addComponent(jLabel3)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         medLayout.setVerticalGroup(
             medLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,8 +182,9 @@ public class myAppointment extends javax.swing.JFrame {
         int a_id = Integer.parseInt(myAppo.getValueAt(selectedRow, 0).toString());
         
         // Open myMedicine frame and pass a_id
-        myMedicine medFrame = new myMedicine(a_id);
+        myMedicine medFrame = new myMedicine(a_id,  uid);
         medFrame.setVisible(true);
+        this.dispose();
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Please select an appointment first.");
     }

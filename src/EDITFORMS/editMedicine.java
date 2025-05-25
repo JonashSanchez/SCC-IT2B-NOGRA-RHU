@@ -58,7 +58,7 @@ public class editMedicine extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Edit Appointment");
+        jLabel1.setText("Edit Medicine");
         MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 400, 70));
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));

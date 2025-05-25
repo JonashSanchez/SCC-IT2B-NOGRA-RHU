@@ -945,7 +945,7 @@ if(fn.getText().isEmpty() || ln.getText().isEmpty() || em.getText().isEmpty()
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField ln;
-    private javax.swing.JPasswordField pw;
+    public javax.swing.JPasswordField pw;
     private javax.swing.JButton refresh;
     public javax.swing.JButton remove;
     public javax.swing.JButton select;

@@ -63,6 +63,7 @@ public class editMedRelease extends javax.swing.JFrame {
         MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 400, 70));
 
         appid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        appid.setEnabled(false);
         appid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appidActionPerformed(evt);
@@ -90,6 +91,7 @@ public class editMedRelease extends javax.swing.JFrame {
         MainPanel.add(medreleaseid, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 240, 40));
 
         medid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        medid.setEnabled(false);
         medid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 medidActionPerformed(evt);

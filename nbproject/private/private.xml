@@ -3,24 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/config/dbConnect.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/rhu/registrationForm.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/admin/adminDashboard.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/admin/editUsers.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/changePass.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/USERS/userDashboard.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/EDITFORMS/editAppointment.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/medicine.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/adminUsers.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/config/PanelPrinter.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/med_release.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/AppointmentHistory.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/EDITFORMS/editMedRelease.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/USERS/transactions.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/rhu/LogInForm.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/admin/createUserForm.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/appointment.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/myAppointment.java</file>
-            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/EDITFORMS/editMedicine.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/appointment_table.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/USERS/accountDetails.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/USERS/printreceipt.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/Staff/editAppointmentstaff.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/changePass.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/user/medicine.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/medrelease_table.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/EDITFORMS/editMedRelease.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/admin/createUserForm.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/med_table.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/EDITFORMS/editMedicine.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/Staff/Appointment_table_staff.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/Staff/addMedicineStaff.java</file>
             <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/tables/myMedicine.java</file>
+            <file>file:/C:/Users/Hazel%20Nogra/Desktop/MY%20MAIN%20RHU%20SYSTEM/SCC-IT2B-NOGRA-RHU/src/Staff/staffDashboard.java</file>
         </group>
     </open-files>
 </project-private>

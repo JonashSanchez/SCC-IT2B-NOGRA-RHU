@@ -6,6 +6,8 @@
 package USERS;
 
 import config.Session;
+import config.dbConnect;
+import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import rhu.LogInForm;
 import user.changePass;
@@ -63,6 +65,7 @@ public class accountDetails extends javax.swing.JFrame {
         us = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -227,6 +230,20 @@ public class accountDetails extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setText("Username:");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 440, 110, 30));
+
+        jButton1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        jButton1.setText("UPDATE");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -393,6 +410,55 @@ public class accountDetails extends javax.swing.JFrame {
                 this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    int uid = Session.getInstance().getUid();
+String firstName = fn.getText().trim();
+String lastName = ln.getText().trim();
+String email = em.getText().trim();
+String contact = cn.getText().trim();
+String username = us.getText().trim();
+String type = ty.getSelectedItem().toString();
+
+// Basic validation
+if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || contact.isEmpty() || username.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Missing Information", JOptionPane.WARNING_MESSAGE);
+    return;
+}
+
+try {
+    dbConnect dbc = new dbConnect();  
+    String sql = "UPDATE tbl_users SET u_fname=?, u_lname=?, u_email=?, u_contact=?, u_username=?, u_type=? WHERE u_id=?";
+    
+    PreparedStatement pstmt = dbc.connect.prepareStatement(sql);
+    pstmt.setString(1, firstName);
+    pstmt.setString(2, lastName);
+    pstmt.setString(3, email);
+    pstmt.setString(4, contact);
+    pstmt.setString(5, username);
+    pstmt.setString(6, type);
+    pstmt.setInt(7, uid);
+
+    int rowsUpdated = pstmt.executeUpdate();
+    pstmt.close();
+
+    if (rowsUpdated > 0) {
+        JOptionPane.showMessageDialog(this, "Account details updated successfully!");
+        Session.getInstance().setFname(firstName);
+        Session.getInstance().setLname(lastName);
+    } else {
+        JOptionPane.showMessageDialog(this, "Update failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -436,6 +502,7 @@ public class accountDetails extends javax.swing.JFrame {
     private javax.swing.JTextField em;
     private javax.swing.JTextField fn;
     private javax.swing.JLabel iddisplay;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel15;

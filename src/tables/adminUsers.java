@@ -123,7 +123,7 @@ public class adminUsers extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 3, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Admin Dashboard");
+        jLabel1.setText("USERS");
         jPanel7.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 570, 70));
 
         jLabel2.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
@@ -276,11 +276,13 @@ public class adminUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_addMouseExited
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
-     createUserForm crf = new createUserForm();
-     crf.setVisible(true);
-     crf.remove.setEnabled(false);
-     crf.select.setEnabled(true);
-     this.dispose();
+      createUserForm crf = new createUserForm();
+    crf.setVisible(true);
+    crf.remove.setEnabled(false);
+    crf.select.setEnabled(true);
+    crf.pw.setEnabled(true); // ✅ Enable password field
+    crf.pw.setEditable(true); // ✅ Allow typing (in case it's set to non-editable elsewhere)
+    this.dispose();
      
     }//GEN-LAST:event_addMouseClicked
 

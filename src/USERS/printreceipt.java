@@ -43,6 +43,7 @@ public class printreceipt extends javax.swing.JFrame {
         page = new javax.swing.JTextArea();
         jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         video = new javax.swing.JLabel();
 
@@ -84,8 +85,11 @@ public class printreceipt extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, 40));
 
+        recieptPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         page.setColumns(20);
         page.setRows(5);
+        page.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         page.setEnabled(false);
         jScrollPane1.setViewportView(page);
 
@@ -95,33 +99,45 @@ public class printreceipt extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         jLabel3.setText("RURAL HEALTH UNIT MINGLANILLA");
 
+        jLabel4.setText("© 2025 Rural Health Unit. All rights reserved.");
+
         javax.swing.GroupLayout recieptPanelLayout = new javax.swing.GroupLayout(recieptPanel);
         recieptPanel.setLayout(recieptPanelLayout);
         recieptPanelLayout.setHorizontalGroup(
             recieptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recieptPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(110, 110, 110))
             .addGroup(recieptPanelLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(recieptPanelLayout.createSequentialGroup()
                 .addGroup(recieptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(recieptPanelLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(recieptPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         recieptPanelLayout.setVerticalGroup(
             recieptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, recieptPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+            .addGroup(recieptPanelLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel1.add(recieptPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 380, 480));
+        jPanel1.add(recieptPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 400, 520));
 
         MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 680, 540));
 
@@ -209,6 +225,7 @@ public class printreceipt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

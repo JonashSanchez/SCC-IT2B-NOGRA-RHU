@@ -31,6 +31,8 @@ public class dbConnect {
         }
         
         
+        
+        
         //Function to save data
         public int insertData(String sql){
             int result;

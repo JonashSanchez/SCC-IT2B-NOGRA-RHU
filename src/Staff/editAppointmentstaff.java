@@ -6,8 +6,11 @@
 package Staff;
 
 import config.dbConnect;
+import de.wannawork.jcalendar.JCalendarPanel;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import tables.appointment_table;
 
@@ -16,6 +19,9 @@ import tables.appointment_table;
  * @author Hazel Nogra
  */
 public class editAppointmentstaff extends javax.swing.JFrame {
+    // In editAppointmentstaff.java
+
+
 
     /**
      * Creates new form editAppointmentstaff
@@ -35,12 +41,8 @@ public class editAppointmentstaff extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         apptime = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        appid = new javax.swing.JTextField();
-        appdate = new javax.swing.JTextField();
         appreason = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         appstatus = new javax.swing.JComboBox<>();
@@ -49,6 +51,10 @@ public class editAppointmentstaff extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        appdate = new de.wannawork.jcalendar.JCalendarPanel();
+        jLabel6 = new javax.swing.JLabel();
+        appid = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,11 +65,6 @@ public class editAppointmentstaff extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Status");
         MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 110, 30));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Edit Appointment");
-        MainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 400, 70));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setText("Time");
@@ -82,37 +83,6 @@ public class editAppointmentstaff extends javax.swing.JFrame {
         });
         MainPanel.add(apptime, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 240, 40));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("Date");
-        MainPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 110, 30));
-
-        appid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        appid.setEnabled(false);
-        appid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                appidActionPerformed(evt);
-            }
-        });
-        appid.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                appidKeyReleased(evt);
-            }
-        });
-        MainPanel.add(appid, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 240, 40));
-
-        appdate.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        appdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                appdateActionPerformed(evt);
-            }
-        });
-        appdate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                appdateKeyReleased(evt);
-            }
-        });
-        MainPanel.add(appdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 240, 40));
-
         appreason.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         appreason.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,9 +98,9 @@ public class editAppointmentstaff extends javax.swing.JFrame {
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mm.png"))); // NOI18N
-        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, -40, 270, 230));
+        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, -30, 270, 230));
 
-        appstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pending", "approved", " " }));
+        appstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "pending", "approved", "done", " " }));
         appstatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appstatusActionPerformed(evt);
@@ -176,44 +146,88 @@ public class editAppointmentstaff extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setText("Date");
+
+        appid.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        appid.setEnabled(false);
+        appid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appidActionPerformed(evt);
+            }
+        });
+        appid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                appidKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Edit Appointment");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(appid, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(appdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButton2)
-                .addGap(71, 71, 71))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton2)
+                        .addGap(227, 227, 227))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(159, 159, 159))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(appdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(appid, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton1))
-                .addGap(116, 116, 116))
+                .addGap(117, 117, 117))
         );
 
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 410, 480));
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 740, 480));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -235,14 +249,6 @@ public class editAppointmentstaff extends javax.swing.JFrame {
 
     }//GEN-LAST:event_appidKeyReleased
 
-    private void appdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_appdateActionPerformed
-
-    private void appdateKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_appdateKeyReleased
-
-    }//GEN-LAST:event_appdateKeyReleased
-
     private void appreasonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appreasonActionPerformed
 
     }//GEN-LAST:event_appreasonActionPerformed
@@ -257,38 +263,40 @@ public class editAppointmentstaff extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         String id = appid.getText();
-        String date = appdate.getText();
-        String time = apptime.getText();
-        String reason = appreason.getText();
-        String status = (String) appstatus.getSelectedItem();
+   Date selectedDate = appdate.getDate(); 
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+    String date = sdf.format(selectedDate);
+    String time = apptime.getText();
+    String reason = appreason.getText();
+    String status = (String) appstatus.getSelectedItem();
 
-        if (date.isEmpty() || time.isEmpty() || reason.isEmpty() || status == null) {
-            JOptionPane.showMessageDialog(null, "Please fill in all fields!");
-        } else {
-            try {
-                dbConnect dbc = new dbConnect();
+    if (date.isEmpty() || time.isEmpty() || reason.isEmpty() || status == null) {
+        JOptionPane.showMessageDialog(null, "Please fill in all fields!");
+    } else {
+        try {
+            dbConnect dbc = new dbConnect();
 
-                String query = "UPDATE tbl_appointments SET a_date = ?, a_time = ?, a_reason = ?, appo_status = ? WHERE a_id = ?";
-                PreparedStatement pst = dbc.connect.prepareStatement(query);
-                pst.setString(1, date);
-                pst.setString(2, time);
-                pst.setString(3, reason);
-                pst.setString(4, status);
-                pst.setString(5, id);
+            String query = "UPDATE tbl_appointments SET a_date = ?, a_time = ?, a_reason = ?, appo_status = ? WHERE a_id = ?";
+            PreparedStatement pst = dbc.connect.prepareStatement(query);
+            pst.setString(1, date);
+            pst.setString(2, time);
+            pst.setString(3, reason);
+            pst.setString(4, status);
+            pst.setString(5, id);
 
-                int updated = pst.executeUpdate();
-                if (updated > 0) {
-                    JOptionPane.showMessageDialog(null, "Appointment updated successfully!");
-                    appointment_table appm =new  appointment_table();
-                    appm.setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Update failed. Please try again.");
-                }
-            } catch (SQLException ex) {
-                System.out.println("Error: " + ex.getMessage());
+            int updated = pst.executeUpdate();
+            if (updated > 0) {
+                JOptionPane.showMessageDialog(null, "Appointment updated successfully!");
+                 appointment_table appm =new  appointment_table();
+        appm.setVisible(true);
+        this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Update failed. Please try again.");
             }
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
+    }
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -346,7 +354,7 @@ public class editAppointmentstaff extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
-    public javax.swing.JTextField appdate;
+    public de.wannawork.jcalendar.JCalendarPanel appdate;
     public javax.swing.JTextField appid;
     public javax.swing.JTextField appreason;
     public javax.swing.JComboBox<String> appstatus;

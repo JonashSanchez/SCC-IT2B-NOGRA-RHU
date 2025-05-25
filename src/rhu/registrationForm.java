@@ -102,26 +102,26 @@ us.setForeground(Color.GRAY);
         jLabel10 = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        em = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        fn = new javax.swing.JTextField();
-        ln = new javax.swing.JTextField();
-        pw = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        us = new javax.swing.JTextField();
-        cn = new javax.swing.JTextField();
-        ty = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         togglePass2 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
-        video = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        fn = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        ln = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        em = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cn = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        ty = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        us = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        pw = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/main bg.jpg"))); // NOI18N
@@ -135,62 +135,26 @@ us.setForeground(Color.GRAY);
 
         jLabel14.setBackground(new java.awt.Color(102, 51, 255));
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/abt us.png"))); // NOI18N
-        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, -50, 200, 230));
+        MainPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, -50, 200, 230));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("Type:");
-        MainPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 440, 110, 30));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setText("Email:");
-        MainPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 340, 110, 30));
-
-        em.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        em.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                emFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                emFocusLost(evt);
-            }
-        });
-        em.addActionListener(new java.awt.event.ActionListener() {
+        togglePass2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
+        togglePass2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emActionPerformed(evt);
+                togglePass2ActionPerformed(evt);
             }
         });
-        em.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                emKeyReleased(evt);
-            }
-        });
-        MainPanel.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 330, 240, 40));
+        jPanel1.add(togglePass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 30, 30));
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton1.setText("Cancel");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        MainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 590, 90, -1));
-
-        jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jButton2.setText("Register");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        MainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 590, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Registration Form");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 430, 70));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setText("First Name:");
-        MainPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 240, 110, 30));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setText("Last Name:");
-        MainPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 290, 110, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 110, 30));
 
         fn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         fn.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -211,7 +175,11 @@ us.setForeground(Color.GRAY);
                 fnKeyReleased(evt);
             }
         });
-        MainPanel.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, 240, 40));
+        jPanel1.add(fn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 240, 40));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setText("Last Name:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 30));
 
         ln.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         ln.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -232,7 +200,98 @@ us.setForeground(Color.GRAY);
                 lnKeyReleased(evt);
             }
         });
-        MainPanel.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 280, 240, 40));
+        jPanel1.add(ln, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 240, 40));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Email:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 110, 30));
+
+        em.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        em.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emFocusLost(evt);
+            }
+        });
+        em.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emActionPerformed(evt);
+            }
+        });
+        em.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                emKeyReleased(evt);
+            }
+        });
+        jPanel1.add(em, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 240, 40));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setText("Contact No:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 110, 30));
+
+        cn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cnFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cnFocusLost(evt);
+            }
+        });
+        cn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cnActionPerformed(evt);
+            }
+        });
+        cn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cnKeyReleased(evt);
+            }
+        });
+        jPanel1.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, 240, 40));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setText("Type:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 110, 30));
+
+        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Patient" }));
+        ty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ty, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 240, 40));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setText("Username:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 110, 30));
+
+        us.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        us.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                usFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usFocusLost(evt);
+            }
+        });
+        us.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usActionPerformed(evt);
+            }
+        });
+        us.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                usKeyReleased(evt);
+            }
+        });
+        jPanel1.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 240, 40));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setText("Password:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 110, 30));
 
         pw.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         pw.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -256,89 +315,30 @@ us.setForeground(Color.GRAY);
                 pwKeyTyped(evt);
             }
         });
-        MainPanel.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 530, 240, 40));
+        jPanel1.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 240, 40));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel7.setText("Password:");
-        MainPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, 110, 30));
-
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel8.setText("Username:");
-        MainPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 490, 110, 30));
-
-        us.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        us.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                usFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                usFocusLost(evt);
-            }
-        });
-        us.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton1.setText("Cancel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        us.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                usKeyReleased(evt);
-            }
-        });
-        MainPanel.add(us, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 480, 240, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 90, -1));
 
-        cn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        cn.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cnFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                cnFocusLost(evt);
-            }
-        });
-        cn.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton2.setText("Register");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cnActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        cn.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cnKeyReleased(evt);
-            }
-        });
-        MainPanel.add(cn, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 380, 240, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
-        ty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Municipal Health Officer", "Staff", "Patient" }));
-        ty.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tyActionPerformed(evt);
-            }
-        });
-        MainPanel.add(ty, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 430, 240, 40));
+        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 430, 480));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("Contact No:");
-        MainPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 390, 110, 30));
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        togglePass2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye.png"))); // NOI18N
-        togglePass2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                togglePass2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(togglePass2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 30, 30));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registration Form");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 430, 70));
-
-        MainPanel.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, 430, 550));
-
-        video.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu orig.png"))); // NOI18N
-        MainPanel.add(video, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -220, 1370, 990));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/rhu3.png"))); // NOI18N
+        MainPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, -20, 1080, 700));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,9 +348,7 @@ us.setForeground(Color.GRAY);
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(MainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -701,13 +699,13 @@ private void validateEmail() {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField ln;
     private javax.swing.JPasswordField pw;
     private javax.swing.JToggleButton togglePass2;
     private javax.swing.JComboBox<String> ty;
     private javax.swing.JTextField us;
-    private javax.swing.JLabel video;
     // End of variables declaration//GEN-END:variables
 
 }
